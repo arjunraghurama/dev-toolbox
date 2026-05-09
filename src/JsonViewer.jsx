@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const CaretPlaceholder = () => <span className="json-caret" style={{ visibility: 'hidden' }}>▶</span>;
+
 const JsonNode = ({ label, value, isLast }) => {
   const [expanded, setExpanded] = useState(true);
 
@@ -17,6 +19,7 @@ const JsonNode = ({ label, value, isLast }) => {
   if (!isObject) {
     return (
       <div className="json-line">
+        <CaretPlaceholder />
         {label && <span className="json-key">"{label}": </span>}
         {renderValue()}
         {!isLast && <span className="json-comma">,</span>}
@@ -32,6 +35,7 @@ const JsonNode = ({ label, value, isLast }) => {
   if (isEmpty) {
     return (
       <div className="json-line">
+        <CaretPlaceholder />
         {label && <span className="json-key">"{label}": </span>}
         <span className="json-bracket">{startBracket}{endBracket}</span>
         {!isLast && <span className="json-comma">,</span>}
@@ -64,6 +68,7 @@ const JsonNode = ({ label, value, isLast }) => {
       )}
       {expanded && (
         <div className="json-line">
+          <CaretPlaceholder />
           <span className="json-bracket">{endBracket}</span>
           {!isLast && <span className="json-comma">,</span>}
         </div>
